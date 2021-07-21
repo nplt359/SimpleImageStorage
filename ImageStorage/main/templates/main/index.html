@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+    function confirmDelete(){
+        return confirm('Удалить картинку?')
+    }
+</script>
+    <div class="container p-2">
+        <div class="row mb-3">
+        {% for img in images %}
+            <div class="col-md-3">
+                <div class="text-center">
+                    <div class="m-1">{{ img.title }} <a onclick="return confirmDelete()" class="btn btn-danger btn-sm" href="{% url 'deleteImage' img.id %}">Удалить</a></div>
+                    <img src="{{img.image.url}}" class="img-thumbnail">
+                    {{img.uploadDateTime.date}}<br>{{img.uploadDateTime.time}}
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:4 %}
+            </div>
+            <div class="row">
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

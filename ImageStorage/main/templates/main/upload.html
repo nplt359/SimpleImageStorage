@@ -1,0 +1,9 @@
+{% extends 'main/base.html' %}
+{% block title %}Загрузка новой картинки{% endblock %}
+{% block content %}
+<form method="POST" enctype="multipart/form-data" class="m-3">{% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit" class="btn btn-success">Загрузить</button>
+</form>
+
+{% endblock %}
